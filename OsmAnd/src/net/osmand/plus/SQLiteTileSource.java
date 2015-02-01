@@ -23,7 +23,8 @@ import android.database.sqlite.SQLiteDiskIOException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-
+/*test git lig*/
+/*test lig2*/
 public class SQLiteTileSource implements ITileSource {
 
 	
