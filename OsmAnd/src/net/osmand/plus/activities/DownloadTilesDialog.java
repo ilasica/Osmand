@@ -137,30 +137,10 @@ public class DownloadTilesDialog {
 		progressDlg.setCancelable(true);
 		progressDlg.setMax(numberTiles);
 		progressDlg.setOnCancelListener(new DialogInterface.OnCancelListener(){
+
 			@Override
 			public void onCancel(DialogInterface dialog) {
-				if(progressDlg.getProgress()>=progressDlg.getMax()) {
-					cancel = true;
-				}
-				else {
-					new AlertDialog.Builder(ctx).setTitle("").setMessage("Dismiss")
-					.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener(){public void onClick(DialogInterface arg0, int arg1){progressDlg.show();}})
-					.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){public void onClick(DialogInterface arg0, int arg1){cancel = true;}})
-					.setOnCancelListener(new DialogInterface.OnCancelListener(){public void onCancel(DialogInterface dialog){/*Neither was pressed*/progressDlg.show();}}
-					).create().show();
-				}
-//				cancel = true;
-				if(cancel) {
-					/*if(map instanceof SQLiteTileSource){
-						((SQLiteTileSource) map).endTransaction();
-					}*/
-					mapView.refreshMap();
-					instance.getDownloaderCallbacks().clear();
-					instance.getDownloaderCallbacks().addAll(previousCallbacks);
-					app.getResourceManager().reloadTilesFromFS();
-					progressDlg.dismiss();
-
-				}			
+				cancel = true;
 			}
 		});
 				
@@ -169,7 +149,7 @@ public class DownloadTilesDialog {
 			@Override
 			public void tileDownloaded(DownloadRequest request) {
 				if (request != null) {
-					progressDlg.setProgress(progressDlg.getProgress() + 1);	
+					progressDlg.setProgress(progressDlg.getProgress() + 1);
 				}
 			}
 		});
@@ -190,14 +170,11 @@ public class DownloadTilesDialog {
 							for (int y = y1; y <= y2 && !cancel; y++) {
 								String tileId = rm.calculateTileId(map, x, y, z);
 								if (rm.tileExistOnFileSystem(tileId, map, x, y, z)) {
-									WDebug.log("already exists "+tileId+" "+progressDlg.getProgress());
 									progressDlg.setProgress(progressDlg.getProgress() + 1);
 								} else {
-									WDebug.log("download "+tileId);
 									rm.getTileImageForMapSync(tileId, map, x, y, z, true);
-									//requests++;
+									requests++;
 								}
-//								progressDlg.incrementSecondaryProgressBy(1);
 								//ilasica I think we don`t need it
 								/*if (!cancel) {
 									if (requests >= limitRequests) {
