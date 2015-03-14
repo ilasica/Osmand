@@ -169,8 +169,7 @@ public class DownloadTilesDialog {
 			@Override
 			public void tileDownloaded(DownloadRequest request) {
 				if (request != null) {
-					WDebug.log("ready "+request.url+" "+progressDlg.getProgress());
-					progressDlg.incrementProgressBy(1);
+					progressDlg.setProgress(progressDlg.getProgress() + 1);	
 				}
 			}
 		});
@@ -192,7 +191,7 @@ public class DownloadTilesDialog {
 								String tileId = rm.calculateTileId(map, x, y, z);
 								if (rm.tileExistOnFileSystem(tileId, map, x, y, z)) {
 									WDebug.log("already exists "+tileId+" "+progressDlg.getProgress());
-									progressDlg.incrementProgressBy(1);
+									progressDlg.setProgress(progressDlg.getProgress() + 1);
 								} else {
 									WDebug.log("download "+tileId);
 									rm.getTileImageForMapSync(tileId, map, x, y, z, true);
