@@ -44,7 +44,6 @@ import net.osmand.plus.OsmandPlugin;
 import net.osmand.plus.R;
 import net.osmand.plus.SQLiteTileSource;
 import net.osmand.plus.Version;
-import net.osmand.plus.WDebug;
 import net.osmand.plus.poi.NameFinderPoiFilter;
 import net.osmand.plus.poi.PoiLegacyFilter;
 import net.osmand.plus.poi.SearchByNameFilter;
@@ -235,7 +234,6 @@ public class ResourceManager {
 			boolean ex = false;
 			if(map instanceof SQLiteTileSource){
 				if(((SQLiteTileSource) map).isLocked()){
-					WDebug.log("db locked "+tileId);
 					return false;
 				}
 				ex = ((SQLiteTileSource) map).exists(x, y, zoom);
@@ -268,14 +266,12 @@ public class ResourceManager {
 
 	// introduce cache in order save memory
 	
-//	protected StringBuilder builder = new StringBuilder(40);
+	protected StringBuilder builder = new StringBuilder(40);
 	protected char[] tileId = new char[120];
 	private GeoidAltitudeCorrection geoidAltitudeCorrection;
 	private boolean searchAmenitiesInProgress;
 
-	//There is nothing to synchronize 
-	public /*synchronized*/ String calculateTileId(ITileSource map, int x, int y, int zoom) {
-		StringBuilder builder = new StringBuilder(40);
+	public synchronized String calculateTileId(ITileSource map, int x, int y, int zoom) {
 		builder.setLength(0);
 		if (map == null) {
 			builder.append(IndexConstants.TEMP_SOURCE_TO_LOAD);
