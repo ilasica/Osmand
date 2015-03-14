@@ -178,15 +178,10 @@ public class DownloadTilesDialog {
 		Runnable r = new Runnable(){
 			@Override
 			public void run() {
-				//int requests = 0;
-				//int limitRequests = 50;
+				int requests = 0;
+				int limitRequests = 50;
 				try {
 					ResourceManager rm = app.getResourceManager();
-					/*WDebug.log("before open transaction ");
-					if(map instanceof SQLiteTileSource){
-						((SQLiteTileSource) map).beginTransaction();
-					}
-					WDebug.log("opened transaction ");*/
 					for (int z = zoom; z <= zoom + progress && !cancel; z++) {
 						int x1 = (int) MapUtils.getTileNumberX(z, latlonRect.left);
 						int x2 = (int) MapUtils.getTileNumberX(z, latlonRect.right);
@@ -203,7 +198,7 @@ public class DownloadTilesDialog {
 									rm.getTileImageForMapSync(tileId, map, x, y, z, true);
 									//requests++;
 								}
-								progressDlg.incrementSecondaryProgressBy(1);
+//								progressDlg.incrementSecondaryProgressBy(1);
 								//ilasica I think we don`t need it
 								/*if (!cancel) {
 									if (requests >= limitRequests) {
