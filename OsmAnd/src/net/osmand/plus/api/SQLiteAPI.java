@@ -26,9 +26,6 @@ public interface SQLiteAPI {
 
 		boolean isClosed();
 
-		void beginTransaction();
-		
-		void endTransaction();
 	}
 	
 	public interface SQLiteCursor {
@@ -77,8 +74,6 @@ public interface SQLiteAPI {
 		void bindLong(int i, long val);
 		
 		void bindBlob(int i, byte[] val);
-		
-		void clearBindings();
 
 	}
 	

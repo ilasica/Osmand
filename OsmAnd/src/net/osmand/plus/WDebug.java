@@ -22,7 +22,7 @@ public class WDebug {
 	}*/
 	
 	public static void log(String str){
-		try {
+		/*try {
 			String tPath = Environment.getExternalStorageDirectory().getAbsolutePath()+ File.separator + "osmand";
 			File file = new File(tPath, "WDEBUG");
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file,true)));
@@ -30,12 +30,12 @@ public class WDebug {
 			writer.write("\n");
 			writer.close();
 		} catch (Exception e) {
-		}
+		}*/
 
 	}
 	
 	public static void log(String str, Exception e){
-		try {
+		/*try {
 			String tPath = Environment.getExternalStorageDirectory().getAbsolutePath()+ File.separator + "osmand";
 			File file = new File(tPath, "WDEBUG");
 			PrintStream ps = new PrintStream(new FileOutputStream(file,true));
@@ -44,19 +44,19 @@ public class WDebug {
 			e.printStackTrace(ps);
 			ps.close();
 		} catch (Exception e1) {
-		}
+		}*/
 
 	}
 	
 	public static void log(Exception e){
-		try {
+		/*try {
 			String tPath = Environment.getExternalStorageDirectory().getAbsolutePath()+ File.separator + "osmand";
 			File file = new File(tPath, "WDEBUG");
 			PrintStream ps = new PrintStream(new FileOutputStream(file,true));
 			e.printStackTrace(ps);
 			ps.close();
 		} catch (Exception e1) {
-		}
+		}*/
 
 	}
 	

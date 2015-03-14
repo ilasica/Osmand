@@ -151,9 +151,9 @@ public class DownloadTilesDialog {
 				}
 //				cancel = true;
 				if(cancel) {
-					if(map instanceof SQLiteTileSource){
+					/*if(map instanceof SQLiteTileSource){
 						((SQLiteTileSource) map).endTransaction();
-					}
+					}*/
 					mapView.refreshMap();
 					instance.getDownloaderCallbacks().clear();
 					instance.getDownloaderCallbacks().addAll(previousCallbacks);
@@ -182,11 +182,11 @@ public class DownloadTilesDialog {
 				//int limitRequests = 50;
 				try {
 					ResourceManager rm = app.getResourceManager();
-					WDebug.log("before open transaction ");
+					/*WDebug.log("before open transaction ");
 					if(map instanceof SQLiteTileSource){
 						((SQLiteTileSource) map).beginTransaction();
 					}
-					WDebug.log("opened transaction ");
+					WDebug.log("opened transaction ");*/
 					for (int z = zoom; z <= zoom + progress && !cancel; z++) {
 						int x1 = (int) MapUtils.getTileNumberX(z, latlonRect.left);
 						int x2 = (int) MapUtils.getTileNumberX(z, latlonRect.right);
