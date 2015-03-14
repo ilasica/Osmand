@@ -125,7 +125,6 @@ public class AsyncLoadingThread extends Thread {
 						}
 					}
 				}
-
 				sleep(750);
 			} catch (InterruptedException e) {
 				log.error(e, e);

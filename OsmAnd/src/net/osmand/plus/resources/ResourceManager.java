@@ -268,13 +268,14 @@ public class ResourceManager {
 
 	// introduce cache in order save memory
 	
-	protected StringBuilder builder = new StringBuilder(40);
+//	protected StringBuilder builder = new StringBuilder(40);
 	protected char[] tileId = new char[120];
 	private GeoidAltitudeCorrection geoidAltitudeCorrection;
 	private boolean searchAmenitiesInProgress;
 
 	//There is nothing to synchronize 
 	public /*synchronized*/ String calculateTileId(ITileSource map, int x, int y, int zoom) {
+		StringBuilder builder = new StringBuilder(40);
 		builder.setLength(0);
 		if (map == null) {
 			builder.append(IndexConstants.TEMP_SOURCE_TO_LOAD);
